@@ -66,6 +66,17 @@
   height: 180px;
   border: 1px solid black;
   /*padding: 82px !important;*/
+  position: relative;
+}
+.square .dragDiv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*padding: 10px;*/
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
 }
 .square img {
   width: 100%;

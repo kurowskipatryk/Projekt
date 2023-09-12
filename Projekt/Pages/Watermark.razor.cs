@@ -8,6 +8,7 @@ using MudBlazor.Components.Chart;
 using Projekt.Models;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -68,28 +69,62 @@ namespace Projekt.Pages
                     await ChangeSize(18);
 
                 }
+                if (AnchorOrigin == Origin.CenterLeft)
+                {
+                    var dotNetObjRef = DotNetObjectReference.Create(this);
+                    await JSRuntime.InvokeVoidAsync("dragElement", dotNetObjRef);
+                }
                 await ChangeOrigin(Origin.BottomRight);
                 await ChangeColor(System.Drawing.Color.White);
                 StateHasChanged();
             }
         }
 
-        
+        double leftPercent;
+        double topPercent;
+        double leftW;
+        double topH;
+        [JSInvokable]
+        public async Task GetPercentFromJS(double left, double top, double width, double height)
+        {
+            leftPercent = left;
+            topPercent = top;
+            leftW = width;
+            topH = height;
+        }
+
         bool selectedFile;
         public int watermakrSize = 18;
         private async Task ChangeSize(int value)
         {
             watermakrSize = value;
-            await ChangeEmpty();
+            if (AnchorOrigin == Origin.CenterLeft)
+            {
+                if (watermarkOption == 1)
+                {
+                    await JSRuntime.InvokeVoidAsync("applyStyle", new { element = "mydivheader", attrib = "fontSize", value = value / 3 });
+                }
+                else
+                {
+                    await JSRuntime.InvokeVoidAsync("applyStyle2", new { element = "mydivheader", attrib = "fontSize", value = value });
+                }
+            }
+            else
+            {
+                await ChangeEmpty();
+
+            }
+
         }
         private async Task ChangeOption(int option)
         {
             selectedFile = false;
-            await ChangeSize(30);
             watermarkOption = option;
+            await ChangeSize(30);
             await ChangeEmpty();
         }
         string pathAdded;
+        string base64StringDrag;
         private async Task UploadFiles2(IBrowserFile file)
         {
             pathAdded = Path.Combine($"wwwroot/PhotosAdd/", file.Name);
@@ -101,14 +136,39 @@ namespace Projekt.Pages
             await fs.ReadAsync(bytes);
             fs.Close();
 
-            await ChangeSize(30);
+            using (Image image = Image.FromFile(pathAdded))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    base64StringDrag = Convert.ToBase64String(imageBytes);
+                }
+            }
+
+            //await ChangeSize(30);
         }
 
-
+        bool self;
         private async Task ChangeOrigin(Origin origin)
         {
             AnchorOrigin = origin;
-            await ChangeEmpty();
+            if (AnchorOrigin == Origin.CenterLeft)
+            {
+                await ChangeToEmpty();
+                self = true;
+                StateHasChanged();
+                await InvokeAsync(StateHasChanged);
+                await Task.Delay(1000);
+                var dotNetObjRef = DotNetObjectReference.Create(this);
+                await JSRuntime.InvokeVoidAsync("dragElement", dotNetObjRef);
+            }
+            else
+            {
+                await ChangeEmpty();
+            }
         }
 
 
@@ -150,6 +210,21 @@ namespace Projekt.Pages
                 }
             }
             StateHasChanged();
+        }
+
+        private async Task ChangeToEmpty()
+        {
+            using (Image image = Image.FromFile(pathEmpty))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    base64String = Convert.ToBase64String(imageBytes);
+                }
+            }
         }
 
         private async ValueTask LoadFiles(InputFileChangeEventArgs e)
@@ -364,28 +439,8 @@ namespace Projekt.Pages
 
                             double dbl = (double)img.Width / (double)img.Height;
                             var perc = Convert.ToDouble(watermakSize) / 100;
-                            int widthW = (int)(oBitmap.Width * (Convert.ToDouble(watermakSize) / 100) );
-                            int heightW = (int)((oBitmap.Height * (Convert.ToDouble(watermakSize) / 100)) /dbl);
-
-                            //int widthW = 0;
-                            //int heightW = 0;
-
-                            //if (watermakSize == 1)
-                            //{
-                            //    widthW = (int)(oBitmap.Width * 0.15);
-                            //    heightW = (int)((oBitmap.Width * 0.15) * dbl);
-
-                            //}
-                            //else if (watermakSize == 2)
-                            //{
-                            //    widthW = (int)(oBitmap.Width * 0.25);
-                            //    heightW = (int)((oBitmap.Width * 0.25) * dbl);
-                            //}
-                            //else if (watermakSize == 3)
-                            //{
-                            //    widthW = (int)(oBitmap.Width * 0.4);
-                            //    heightW = (int)((oBitmap.Width * 0.4) * dbl);
-                            //}
+                            int widthW = (int)(oBitmap.Width * (Convert.ToDouble(watermakSize) / 100));
+                            int heightW = (int)((oBitmap.Height * (Convert.ToDouble(watermakSize) / 100)) / dbl);
 
                             img = (Image)new Bitmap(img, widthW, heightW);
 
@@ -402,9 +457,16 @@ namespace Projekt.Pages
                             {
                                 oPoint = new Point(10, oBitmap.Height - (img.Height + 10));
                             }
-                            else if(AnchorOrigin == Origin.CenterCenter)
+                            else if (AnchorOrigin == Origin.CenterCenter)
                             {
-                                oPoint = new Point(oBitmap.Width /2 - (img.Width /2 ), oBitmap.Height /2 - (img.Height /2));
+                                oPoint = new Point(oBitmap.Width / 2 - (img.Width / 2), oBitmap.Height / 2 - (img.Height / 2));
+                            }
+                            else if (AnchorOrigin == Origin.CenterLeft)
+                            {
+                                var x = (int)((double)oBitmap.Width * leftPercent);
+                                var y = (int)((double)oBitmap.Height * topPercent);
+
+                                oPoint = new Point( x + (int)leftW, y + (int)topH);
                             }
 
                             oGraphics.DrawImage(img, new Rectangle(oPoint.X, oPoint.Y, img.Width, img.Height));
@@ -450,6 +512,13 @@ namespace Projekt.Pages
                         else if (AnchorOrigin == Origin.TopLeft)
                         {
                             oPoint = new Point(oBitmap.Width - (oBitmap.Width - 10), oBitmap.Height - (oBitmap.Height - 10));
+                        }
+                        else if (AnchorOrigin == Origin.CenterLeft)
+                        {
+                            var x = (int)((double)oBitmap.Width * leftPercent);
+                            var y = (int)((double)oBitmap.Height * topPercent);
+
+                            oPoint = new Point((int)((double)oBitmap.Width * leftPercent), (int)((double)oBitmap.Height * topPercent));
                         }
                         oGraphics.DrawString(watermarkText, oFont, oBrush, oPoint);
 

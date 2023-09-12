@@ -2,7 +2,7 @@
 @layout MainLayoutSecond
 
 <MudItem xs="10" Class="d-flex justify-start">
-    <MudRadioGroup T="int" SelectedOption="@watermarkOption" SelectedOptionChanged="ChangeOption" Class="d-flex flex-column">
+    <MudRadioGroup T="int" SelectedOptionChanged="ChangeOption" Class="d-flex flex-column">
         <MudRadio Color="Color.Primary" Dense="true" Option="1">Tekst</MudRadio>
         <MudRadio Color="Color.Primary" Dense="true" Option="2">Obrazek</MudRadio>
     </MudRadioGroup>
@@ -13,12 +13,12 @@
 
         <MudTextField @bind-Value="watermarkText" Label="Wpisz tekst" Variant="Variant.Text"></MudTextField>
 
-        <MudSlider T="int" ValueChanged="ChangeSize" Value="watermakrSize" Step="2" Min="18" Max="40" Color="Color.Info">Rozmiar: @watermakrSize.ToString()</MudSlider>
+        <MudSlider T="int" ValueChanged="ChangeSize" Step="2" Min="18" Max="62" Color="Color.Info">Rozmiar: @watermakrSize.ToString()</MudSlider>
     </div>
 }
 else
 {
-     <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6">
         <MudFileUpload T="IBrowserFile" Accept=".png, .jpg" FilesChanged="UploadFiles2" MaximumFileCount="1">
             <ButtonTemplate>
                 <MudButton HtmlTag="label"
@@ -54,6 +54,7 @@ else
         <MudRadio Color="Color.Primary" Dense="true" Option="Origin.BottomLeft">Bottom-Left</MudRadio>
         <MudRadio Color="Color.Primary" Dense="true" Option="Origin.BottomRight">Bottom-Right</MudRadio>
         <MudRadio Color="Color.Primary" Dense="true" Option="Origin.CenterCenter">Center-Center</MudRadio>
+        <MudRadio Color="Color.Primary" Dense="true" Option="Origin.CenterLeft">Self</MudRadio>
     </MudRadioGroup>
 </MudItem>
 
@@ -69,10 +70,23 @@ else
 
 
 <MudItem xs="10" Class="d-flex justify-center align-center">
-    <div class="square">
+    <div class="square" id="square">
         @*<img src="@pathEmptyCopy2" />*@
 
-        <img src="data:image/png;base64, @base64String" alt="Red dot" />
+        <img src="data:image/png;base64, @base64String" />
+        @if (self)
+        {
+            if (watermarkOption == 1)
+            {
+                <div id="mydivheader" class="dragDiv">Watermark</div>
+
+            }
+            else
+            {
+                <div id="mydivheader" class="dragDiv"><img src="data:image/png;base64, @base64StringDrag" /></div>
+
+            }
+        }
         @*<MudPopover OverflowBehavior="OverflowBehavior.FlipNever" Open="true" AnchorOrigin="@AnchorOrigin" TransformOrigin="@TransformOrigin" Class="p-0">*@
         @*<div class="@GetLocation()" style="top:0; left:0;">*@
 
