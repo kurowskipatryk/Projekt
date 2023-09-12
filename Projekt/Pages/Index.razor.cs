@@ -17,7 +17,7 @@ namespace Projekt.Pages
         {
             if (firstRender)
             {
-                await JSRuntime.InvokeVoidAsync("Slice");
+                //await JSRuntime.InvokeVoidAsync("Slice");
             }
         }
     }

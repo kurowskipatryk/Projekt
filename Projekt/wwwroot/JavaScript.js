@@ -25,14 +25,15 @@ function SetLanguage(culture) {
 //    });
 //});
 
+
 function Slice() {
     $('.slider').slick({
         slidesToShow: 8,
         slidesToScroll: 1,
         infinite: true,
         arrows: true,
-        //autoplay: true,
-        //autoplaySpeed: 5000,
+        autoplay: true,
+        autoplaySpeed: 5000,
         prevArrow: $('.prev-arrow'),
         nextArrow: $('.next-arrow'),
 
@@ -141,8 +142,8 @@ function dragElement(dotNetObjRef) {
         document.onmouseup = null;
         document.onmousemove = null;
 
-        let left = waterMark.offsetLeft;
-        let top = waterMark.offsetTop;
+        let left = waterMark.offsetLeft + waterMark.offsetWidth /2;
+        let top = waterMark.offsetTop + waterMark.offsetHeight /2 ;
 
 
         const squareRect = document.getElementById("square").getBoundingClientRect();

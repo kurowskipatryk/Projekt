@@ -53,25 +53,25 @@
 
 
 
-    .add-image-icon {
-        display: flex;
-        justify-content: center;
+.add-image-icon {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    ::deep .mud-fab {
+        border-radius: 0;
+        box-shadow: none;
         width: 100%;
         height: 100%;
-
-        ::deep .mud-fab {
-            border-radius: 0;
-            box-shadow: none;
-            width: 100%;
-            height: 100%;
-        }
     }
+}
 
 
-    .add-image-icon ::deep .mud-fab:hover {
-        border-radius: 0;
-        box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
-    }
+.add-image-icon ::deep .mud-fab:hover {
+    border-radius: 0;
+    box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
+}
 
 .square {
     width: 250px;

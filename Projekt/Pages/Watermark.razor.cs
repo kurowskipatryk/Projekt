@@ -74,6 +74,7 @@ namespace Projekt.Pages
                     var dotNetObjRef = DotNetObjectReference.Create(this);
                     await JSRuntime.InvokeVoidAsync("dragElement", dotNetObjRef);
                 }
+                await ChangeOption(1);
                 await ChangeOrigin(Origin.BottomRight);
                 await ChangeColor(System.Drawing.Color.White);
                 StateHasChanged();
@@ -143,12 +144,10 @@ namespace Projekt.Pages
                     image.Save(m, image.RawFormat);
                     byte[] imageBytes = m.ToArray();
 
-                    // Convert byte[] to Base64 String
                     base64StringDrag = Convert.ToBase64String(imageBytes);
                 }
             }
-
-            //await ChangeSize(30);
+            await ChangeSize(watermakrSize);
         }
 
         bool self;
@@ -162,11 +161,13 @@ namespace Projekt.Pages
                 StateHasChanged();
                 await InvokeAsync(StateHasChanged);
                 await Task.Delay(1000);
+                await ChangeSize(30);
                 var dotNetObjRef = DotNetObjectReference.Create(this);
                 await JSRuntime.InvokeVoidAsync("dragElement", dotNetObjRef);
             }
             else
             {
+                self = false;
                 await ChangeEmpty();
             }
         }
@@ -466,7 +467,8 @@ namespace Projekt.Pages
                                 var x = (int)((double)oBitmap.Width * leftPercent);
                                 var y = (int)((double)oBitmap.Height * topPercent);
 
-                                oPoint = new Point( x + (int)leftW, y + (int)topH);
+                                //oPoint = new Point( x + (int)leftW, y + (int)topH);
+                                oPoint = new Point( x - ((int)img.Width /2 ), y - ((int)img.Height /2) );
                             }
 
                             oGraphics.DrawImage(img, new Rectangle(oPoint.X, oPoint.Y, img.Width, img.Height));
@@ -513,12 +515,16 @@ namespace Projekt.Pages
                         {
                             oPoint = new Point(oBitmap.Width - (oBitmap.Width - 10), oBitmap.Height - (oBitmap.Height - 10));
                         }
+                        else if (AnchorOrigin == Origin.CenterCenter)
+                        {
+                            oPoint = new Point(oBitmap.Width / 2 - (int)(oSizeF.Width / 2), oBitmap.Height / 2 - (int)(oSizeF.Height / 2));
+                        }
                         else if (AnchorOrigin == Origin.CenterLeft)
                         {
                             var x = (int)((double)oBitmap.Width * leftPercent);
                             var y = (int)((double)oBitmap.Height * topPercent);
 
-                            oPoint = new Point((int)((double)oBitmap.Width * leftPercent), (int)((double)oBitmap.Height * topPercent));
+                            oPoint = new Point(x - ((int)oSizeF.Width/2 ), y - ((int)oSizeF.Height/2 ));
                         }
                         oGraphics.DrawString(watermarkText, oFont, oBrush, oPoint);
 

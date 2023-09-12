@@ -141,6 +141,14 @@
     display: flex;
     position: relative;
 
+    .slider {
+
+        img {
+            width: 150px;
+            height: 90px;
+        }
+    }
+
     .arrow {
         z-index: 101;
         top: calc(50% - 18px);
@@ -160,8 +168,8 @@
     }
 
     .slick-slide {
-        display:flex;
-        justify-content:center;
+        display: flex;
+        justify-content: center;
     }
 }
 
@@ -171,17 +179,18 @@
     align-items: center;
     justify-content: space-evenly;
     position: relative;
+
+    .slide {
+        position: absolute;
+        display: flex;
+        animation-name: slideup;
+        animation-delay: 0.5s;
+        animation-duration: 0.8s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-out;
+    }
 }
 
-.slide {
-    position: absolute;
-    display: flex;
-    animation-name: slideup;
-    animation-delay: 0.5s;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
-}
 
 .education, .expirience {
 }
@@ -192,7 +201,7 @@
     }
 
     100% {
-        top: -50px;
+        top: 50px;
     }
 }
 
@@ -202,11 +211,5 @@
         width: 200px;
     }
 
-    .slider {
-
-        img {
-            width: 150px;
-            height: 90px;
-        }
-    }
+ 
 
