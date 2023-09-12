@@ -1,0 +1,125 @@
+﻿@page "/Watermark"
+@layout MainLayoutSecond
+
+<MudItem xs="10" Class="d-flex justify-start">
+    <MudRadioGroup T="int" SelectedOption="@watermarkOption" SelectedOptionChanged="ChangeOption" Class="d-flex flex-column">
+        <MudRadio Color="Color.Primary" Dense="true" Option="1">Tekst</MudRadio>
+        <MudRadio Color="Color.Primary" Dense="true" Option="2">Obrazek</MudRadio>
+    </MudRadioGroup>
+</MudItem>
+@if (watermarkOption == 1)
+{
+    <div class="col-12 col-md-6">
+
+        <MudTextField @bind-Value="watermarkText" Label="Wpisz tekst" Variant="Variant.Text"></MudTextField>
+
+        <MudSlider T="int" ValueChanged="ChangeSize" Value="watermakrSize" Step="2" Min="18" Max="40" Color="Color.Info">Rozmiar: @watermakrSize.ToString()</MudSlider>
+    </div>
+}
+else
+{
+     <div class="col-12 col-md-6">
+        <MudFileUpload T="IBrowserFile" Accept=".png, .jpg" FilesChanged="UploadFiles2" MaximumFileCount="1">
+            <ButtonTemplate>
+                <MudButton HtmlTag="label"
+                       Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Filled.CloudUpload"
+                       for="@context">
+                    Wybierz plik
+                </MudButton>
+            </ButtonTemplate>
+        </MudFileUpload>
+        <MudSlider T="int" ValueChanged="ChangeSize" Value="watermakrSize" Min="10" Max="80" Color="Color.Info">Rozmiar(%): @watermakrSize.ToString()</MudSlider>
+    </div>
+}
+
+@*<h5 style="margin-top:20px;">Rozmiar tekstu</h5>
+<MudItem xs="10" Class="d-flex justify-start">
+    <MudRadioGroup T="int" SelectedOption="@watermakSize" SelectedOptionChanged="ChangeFontSize" Class="d-flex flex-column">
+        <MudRadio Color="Color.Primary" Dense="true" Option="1">Mały</MudRadio>
+        <MudRadio Color="Color.Primary" Dense="true" Option="2">Średni</MudRadio>
+        <MudRadio Color="Color.Primary" Dense="true" Option="3">Duży</MudRadio>
+    </MudRadioGroup>
+</MudItem>*@
+
+
+
+<h5 style="margin-top:20px;">Wybierz pozycje</h5>
+<MudItem xs="10" Class="d-flex justify-start">
+    @*<MudText Typo="Typo.h6">Anchor Origin</MudText>*@
+    <MudRadioGroup T="Origin" SelectedOption="@AnchorOrigin" SelectedOptionChanged="ChangeOrigin" Class="d-flex flex-column">
+        <MudRadio Color="Color.Primary" Dense="true" Option="Origin.TopLeft">Top-Left</MudRadio>
+        <MudRadio Color="Color.Primary" Dense="true" Option="Origin.TopRight">Top-Right</MudRadio>
+        <MudRadio Color="Color.Primary" Dense="true" Option="Origin.BottomLeft">Bottom-Left</MudRadio>
+        <MudRadio Color="Color.Primary" Dense="true" Option="Origin.BottomRight">Bottom-Right</MudRadio>
+        <MudRadio Color="Color.Primary" Dense="true" Option="Origin.CenterCenter">Center-Center</MudRadio>
+    </MudRadioGroup>
+</MudItem>
+
+@if (watermarkOption == 1)
+{
+    <MudItem xs="10" Class="d-flex justify-start">
+        <MudRadioGroup T="System.Drawing.Color" SelectedOption="@color1" SelectedOptionChanged="ChangeColor" Class="d-flex flex-column">
+            <MudRadio Color="Color.Secondary" Dense="true" Option="System.Drawing.Color.White">Light Gray</MudRadio>
+            <MudRadio Color="Color.Secondary" Dense="true" Option="System.Drawing.Color.Black">Dark Gray </MudRadio>
+        </MudRadioGroup>
+    </MudItem>
+}
+
+
+<MudItem xs="10" Class="d-flex justify-center align-center">
+    <div class="square">
+        @*<img src="@pathEmptyCopy2" />*@
+
+        <img src="data:image/png;base64, @base64String" alt="Red dot" />
+        @*<MudPopover OverflowBehavior="OverflowBehavior.FlipNever" Open="true" AnchorOrigin="@AnchorOrigin" TransformOrigin="@TransformOrigin" Class="p-0">*@
+        @*<div class="@GetLocation()" style="top:0; left:0;">*@
+
+        @*<MudText Typo="Typo.body2" Class="p-0">@watermarkText</MudText>*@
+        @*</div>*@
+        @*</MudPopover>*@
+    </div>
+</MudItem>
+
+<div class="col-10 mt-3 wrap-load-picture">
+    <div class="upload-files">
+        @foreach (var uploadedFile in uploadedFiles)
+        {
+            <MudProgressLinear Color="Color.Info" Size="Size.Large" Value="uploadedFile.UploadedPercentage" Class="my-7">
+                <MudText Typo="Typo.subtitle1" Color="Color.Dark">
+                    <b>@uploadedFile.UploadedPercentage%</b>  (@FormatBytes(uploadedFile.UploadedBytes) / @FormatBytes(uploadedFile.Size))
+                </MudText>
+            </MudProgressLinear>
+        }
+    </div>
+
+    <ul class="wrap-images">
+        @if (fileExists)
+        {
+            @foreach (var item in FileList)
+            {
+                <li class="image-loaded">
+                    <img class="image" src="./Photos/@item.Name" />
+                    <MudIconButton Class="mud-delete-image-button" Icon="@Icons.Material.Filled.Delete" OnClick="()=>DeleteImage(item)" Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" />
+                </li>
+            }
+        }
+
+        @for (int i = 0; i < numberOfEmptyImages; i++)
+        {
+            <li class="image-icon-flex">
+                <div class="add-image-icon">
+                    <InputFile id="fileInput" OnChange="e => LoadFiles(e) " hidden multiple />
+                    <MudFab HtmlTag="label"
+                        Icon="@Icons.Filled.AddAPhoto"
+                        IconSize="Size.Small"
+                        for="fileInput"
+                        Class="icon-add-image-mudfab" />
+                </div>
+            </li>
+        }
+
+    </ul>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Download" Style="float:right;">Pobierz</MudButton>
+</div>

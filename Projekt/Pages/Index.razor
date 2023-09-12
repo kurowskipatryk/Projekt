@@ -1,0 +1,174 @@
+﻿@page "/"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<App> Localizer
+<PageTitle>O mnie</PageTitle>
+
+
+<header>
+    <div class="wrap--menu">
+        <div class="logo">
+            <h2>Lorem ipsum</h2>
+        </div>
+        <div class="wrap--iconAndMenu">
+            <div class="menu">
+                <img onclick="openMenu()" src="img/menu.svg" alt="">
+                <div class="menus">
+                    <ul class="menu-list" id="menu-list">
+                        <li>
+                            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                                <span class="oi oi-home" aria-hidden="true"></span>@Localizer["About me"]
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="Projects" Match="NavLinkMatch.All">
+                                <span class="fa-solid fa-rectangle-list" aria-hidden="true"></span>@Localizer["Projects"]
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                                <span class="fa-solid fa-address-book" aria-hidden="true"></span> @Localizer["Contact"]
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="git">
+                <MudIconButton Icon="fa-brands fa-github"></MudIconButton>
+            </div>
+            <div class="linked">
+                <MudIconButton Icon="fa-brands fa-linkedin"></MudIconButton>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="wrap-slick">
+
+
+    <input type="image" src="img/ARROW-1.svg" class="prev-arrow arrow position-absolute" alt="">
+    <div class="slider" style="width:90vw;">
+
+        <div>
+            <img src="/Img/C.png" alt="">
+
+        </div>
+        <div>
+            <img src="/Img/net.jpg" alt="">
+        </div>
+        <div>
+            <img src="/Img/efCore.png" alt="">
+
+        </div>
+        <div>
+            <img src="/Img/NET_Core.png" alt="">
+
+        </div>
+      
+        <div>
+            <img src="/Img/blazor.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/docker.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/Git.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/html.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/javascript.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/css.jpg" alt="">
+        </div>
+        <div>
+            <img src="/Img/mssql.jpg" alt="">
+        </div>
+        <div>
+            <img src="/Img/saas.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/postman.jpg" alt="">
+        </div>
+        <div>
+            <img src="/Img/rabbit.jpg" alt="">
+        </div>
+        <div>
+            <img src="/Img/react.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/apache.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/typescript.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/powershell.png" alt="">
+        </div>
+        <div>
+            <img src="/Img/linux.png" alt="">
+        </div>
+
+
+    </div>
+    <input type="image" src="img/ARROW-1.svg" class="next-arrow arrow position-absolute" alt="">
+</div>
+
+
+
+
+@*<section class="wrap--section1">
+    <div class="slide">
+
+        <div class="education">
+            <MudText Color="Color.Dark" Align="Align.Center" Typo="Typo.h6" GutterBottom="true">@Localizer["Education"]</MudText>
+            <MudTimeline>
+                <MudTimelineItem>
+                    <ItemOpposite>
+                        <MudText Color="Color.Info" Typo="Typo.h5">2008 - 2011</MudText>
+                    </ItemOpposite>
+                    <ItemContent>
+                        <MudText>Zespół Szkół w Otmuchowie</MudText>
+                        <MudText>Technik Informatyk</MudText>
+                    </ItemContent>
+                </MudTimelineItem>
+                <MudTimelineItem TimelineAlign="TimelineAlign.End">
+                    <ItemOpposite>
+                        <MudText Color="Color.Info" Typo="Typo.h5">2015 - 2019</MudText>
+                    </ItemOpposite>
+                    <ItemContent>
+                        <MudText>Uniwersytet Opolski</MudText>
+                        <MudText>Informatyka (Inżynier)</MudText>
+                    </ItemContent>
+                </MudTimelineItem>
+            </MudTimeline>
+        </div>
+
+
+        <div class="expirience">
+            <MudText Color="Color.Dark" Align="Align.Center" Typo="Typo.h6" GutterBottom="true">@Localizer["Experience"]</MudText>
+            <MudTimeline>
+                <MudTimelineItem>
+                    <ItemOpposite>
+                        <MudText Color="Color.Info" Typo="Typo.h5">Wrzesień 2017</MudText>
+                    </ItemOpposite>
+                    <ItemContent>
+                        <MudText>It Develop Opole</MudText>
+                        <MudText>Praktyki studenckie</MudText>
+                    </ItemContent>
+                </MudTimelineItem>
+                <MudTimelineItem TimelineAlign="TimelineAlign.End">
+                    <ItemOpposite>
+                        <MudText Color="Color.Info" Typo="Typo.h5">Maj 2021 - aktualnie</MudText>
+                    </ItemOpposite>
+                    <ItemContent>
+                        <MudText>Infotel Software</MudText>
+                        <MudText>Full-stack Developer</MudText>
+                    </ItemContent>
+                </MudTimelineItem>
+            </MudTimeline>
+        </div>
+    </div>
+</section>
+*@

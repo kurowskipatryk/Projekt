@@ -1,0 +1,54 @@
+﻿@inject NavigationManager NavigationManager
+@inject IConfiguration Configuration
+
+@if (cultures != null)
+{
+
+}
+<div class="flags"
+    <button @onclick="()=>RequestCultureChange(gb)"><span class="fi fi-gb flag"  /></button>
+    <button @onclick="()=>RequestCultureChange(pl)"><span class="fi fi-pl flag"  /></button>
+</div>
+@code {
+    private string selectedCulture = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+
+    [Inject] public IJSRuntime JSRuntime { get; set; }
+    private Dictionary<string, string> cultures;
+
+    [Parameter] public EventCallback<string> OnSelectedLanguage{ get; set; }
+    string gb = "en";
+    string pl = "pl";
+
+    protected async override void OnInitialized()
+    {
+        //cultures = Configuration.GetSection("Cultures")
+        //.GetChildren().ToDictionary(x => x.Key, x => x.Value);
+
+        await OnSelectedLanguage.InvokeAsync(selectedCulture);
+
+    }
+
+    private async Task RequestCultureChange(string cult)
+    {
+
+        if (string.IsNullOrWhiteSpace(cult))
+        {
+            return;
+        }
+
+        var uri = new Uri(NavigationManager.Uri)
+        .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+
+        await JSRuntime.InvokeVoidAsync(identifier: "SetLanguage", cult);
+
+        var query = $"?culture={Uri.EscapeDataString(cult)}&" +
+            $"redirectUri={Uri.EscapeDataString(uri)}";
+
+        await OnSelectedLanguage.InvokeAsync(cult);
+
+
+
+        NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+    }
+}
+

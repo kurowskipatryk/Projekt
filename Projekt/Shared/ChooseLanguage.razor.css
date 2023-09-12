@@ -1,0 +1,27 @@
+﻿.flags {
+    display: flex;
+    /*flex-direction: row;*/
+    justify-content: flex-end;
+    /*width: 60%;*/
+}
+.flag {
+    width: 30px;
+    height: 30px;
+}
+.flags button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+@media (min-width: 576px) {
+  /*  .flags {
+        width: 50%;
+        
+    }*/
+}
+@media (min-width: 768px) {
+    
+    /*.flags {
+        width: 100%;
+        
+    }*/
+}

@@ -1,0 +1,75 @@
+.wrap-load-picture {
+  /*max-width: 1000px;*/
+}
+
+.wrap-images {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px) {
+  .wrap-images {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+.wrap-images .image-loaded {
+  width: 200px;
+  height: 140px;
+  position: relative;
+}
+.wrap-images .image-loaded ::deep .mud-delete-image-button {
+  display: none;
+}
+.wrap-images .image-loaded ::deep .mud-delete-image-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.wrap-images .image-loaded .image {
+  width: 100%;
+  height: 100%;
+}
+.wrap-images .image-loaded:hover ::deep .mud-delete-image-button {
+  display: initial;
+}
+.wrap-images .image-icon-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  width: 200px;
+  height: 140px;
+}
+
+.add-image-icon {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.add-image-icon ::deep .mud-fab {
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+  height: 100%;
+}
+
+.add-image-icon ::deep .mud-fab:hover {
+  border-radius: 0;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.square {
+  width: 250px;
+  height: 180px;
+  border: 1px solid black;
+  /*padding: 82px !important;*/
+}
+.square img {
+  width: 100%;
+  height: 100%;
+}
+
+/*# sourceMappingURL=Watermark.razor.css.map */
