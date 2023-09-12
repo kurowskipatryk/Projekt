@@ -41,8 +41,8 @@ namespace Projekt.Pages
 
         string watermarkText = "WATERMARK";
         int watermarkOption = 1;
+        string pathEmpty = "wwwroot/Img/empty/empty.jpg";
 
-        Guid guidEmpty;
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
@@ -59,18 +59,6 @@ namespace Projekt.Pages
                     }
                 }
 
-
-                guidEmpty = Guid.NewGuid();
-                //pathEmptyCopy = $"wwwroot/Img/empty/{guidEmpty}emptyCopy.jpg";
-                //pathEmptyCopy2 = $"Img/empty/{guidEmpty}emptyCopy.jpg";
-                //try
-                //{
-                //    File.Copy(pathEmpty, pathEmptyCopy, true);
-                //}
-                //catch (IOException iox)
-                //{
-                //    Console.WriteLine(iox.Message);
-                //}
                 if (watermarkOption == 2)
                 {
                     await ChangeSize(30);
@@ -82,16 +70,11 @@ namespace Projekt.Pages
                 }
                 await ChangeOrigin(Origin.BottomRight);
                 await ChangeColor(System.Drawing.Color.White);
-                //pathEmptyCopy2 = pathEmptyCopy.Substring(8);
                 StateHasChanged();
             }
         }
 
-        string pathEmpty = "wwwroot/Img/empty/empty.jpg";
-        //string pathEmptyCopy = $"wwwroot/Img/empty/emptyCopy.jpg";
-        //string pathEmptyCopy2 = "Img/empty/empty.jpg";
-
-        //MemoryStream selectedFile;
+        
         bool selectedFile;
         public int watermakrSize = 18;
         private async Task ChangeSize(int value)
