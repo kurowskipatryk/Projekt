@@ -8,13 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddServerSideBlazor().AddCircuitOptions(opt => { opt.DetailedErrors = true; });
 builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddControllers();
 builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
 
-builder.Services.AddWMBSC();
+//builder.Services.AddWMBSC();
 
 builder.Services.AddMudServices();
 var app = builder.Build();
