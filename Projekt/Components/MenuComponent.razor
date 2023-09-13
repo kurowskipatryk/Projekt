@@ -1,0 +1,39 @@
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<App> Localizer
+
+<div class="wrap--menu">
+    <div class="logo">
+        <h2>Lorem ipsum</h2>
+    </div>
+    <div class="wrap--iconAndMenu">
+        <div class="menu">
+            <img onclick="openMenu()" src="img/menu.svg" alt="">
+            <div class="menus">
+                <ul class="menu-list" id="menu-list">
+                    <li>
+                        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                            <span class="oi oi-home" aria-hidden="true"></span>@Localizer["About me"]
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink class="nav-link" href="Projects" Match="NavLinkMatch.All">
+                            <span class="fa-solid fa-rectangle-list" aria-hidden="true"></span>@Localizer["Projects"]
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink class="nav-link" href="Contact" Match="NavLinkMatch.All">
+                            <span class="fa-solid fa-address-book" aria-hidden="true"></span> @Localizer["Contact"]
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="git">
+            <MudIconButton Href="https://github.com/kurowskipatryk" Icon="fa-brands fa-github"></MudIconButton>
+        </div>
+        <div class="linked">
+            <MudIconButton Href="https://www.linkedin.com/in/patryk-kurowski-22b43b1b6/" Icon="fa-brands fa-linkedin"></MudIconButton>
+        </div>
+    </div>
+</div>
+

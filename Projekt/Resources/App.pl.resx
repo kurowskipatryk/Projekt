@@ -120,16 +120,55 @@
   <data name="About me" xml:space="preserve">
     <value>O mnie</value>
   </data>
+  <data name="Apprentice" xml:space="preserve">
+    <value>Praktyki studenckie</value>
+  </data>
+  <data name="Computer Science (Engineer)" xml:space="preserve">
+    <value>Informatyka (Inżynier)</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Kontakt</value>
   </data>
   <data name="Education" xml:space="preserve">
     <value>Wykształcenie</value>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>Angielski</value>
+  </data>
   <data name="Experience" xml:space="preserve">
     <value>Doświadczenie zawodowe</value>
   </data>
+  <data name="German" xml:space="preserve">
+    <value>Niemiecki</value>
+  </data>
+  <data name="IT specialist" xml:space="preserve">
+    <value>Technik Informatyk</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Języki</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Maj</value>
+  </data>
+  <data name="now" xml:space="preserve">
+    <value>aktualnie</value>
+  </data>
+  <data name="Polish" xml:space="preserve">
+    <value>Polski</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>Projekty</value>
+  </data>
+  <data name="School Complex in Otmuchow" xml:space="preserve">
+    <value>Zespół Szkół w Otmuchowie</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Wrzesień</value>
+  </data>
+  <data name="Skills/Tools" xml:space="preserve">
+    <value>Umiejętności/Technologie</value>
+  </data>
+  <data name="University of Opole" xml:space="preserve">
+    <value>Uniwersytet Opolski</value>
   </data>
 </root>

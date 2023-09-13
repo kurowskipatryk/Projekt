@@ -67,4 +67,6 @@ a, .btn-link {
     color: white;
 }
 
-
+.mud-timeline-item.mud-timeline-item-end {
+    align-items: center;
+}

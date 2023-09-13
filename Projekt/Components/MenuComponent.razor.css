@@ -1,0 +1,111 @@
+.wrap--menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrap--menu .logo {
+  padding: 20px 0;
+}
+.wrap--menu .wrap--iconAndMenu {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+.wrap--menu .wrap--iconAndMenu .menu .menu-list {
+  position: absolute;
+  transform: translate3d(-800px, 0, 0);
+  left: 0;
+  transition: transform 0.8s;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  text-align: center;
+}
+.wrap--menu .wrap--iconAndMenu .menu .menu-list li {
+  margin: 0 1rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0.5em 0;
+  width: 100%;
+  color: white;
+  background-color: #222;
+  text-transform: uppercase;
+  font: normal normal normal 16px/19px Montserrat;
+  letter-spacing: 3.04px;
+  color: white;
+}
+.wrap--menu .wrap--iconAndMenu .menu .menu-list li:last-child {
+  color: #FF0102;
+}
+.wrap--menu .wrap--iconAndMenu .menu .menu-list.active {
+  transform: translate3d(0, 0, 0);
+}
+.wrap--menu .wrap--iconAndMenu .menu img {
+  width: 23px;
+  height: 20px;
+}
+.wrap--menu .wrap--iconAndMenu .git ::deep a {
+  color: black;
+}
+.wrap--menu .wrap--iconAndMenu .linked ::deep a {
+  color: #0068FF;
+}
+@media (min-width: 576px) {
+  .wrap--menu .wrap--iconAndMenu {
+    grid-template-rows: 10fr 15fr;
+    grid-template-columns: 1fr 1fr 40fr;
+  }
+  .wrap--menu .wrap--iconAndMenu .git {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .wrap--menu .wrap--iconAndMenu .linked {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .wrap--menu .wrap--iconAndMenu .menu {
+    grid-column: 1/span 3;
+    grid-row: 2;
+  }
+  .wrap--menu .wrap--iconAndMenu .menu img {
+    display: none;
+  }
+  .wrap--menu .wrap--iconAndMenu .menu .menu-list {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    transform: translate3d(40%, 0, 0);
+    background-color: white;
+  }
+  .wrap--menu .wrap--iconAndMenu .menu .menu-list li {
+    background-color: transparent;
+    color: black;
+  }
+  .wrap--menu .wrap--iconAndMenu .menu .menus::before,
+.wrap--menu .wrap--iconAndMenu .menu .menus::after {
+    position: absolute;
+    bottom: 10px;
+    content: "";
+    width: 5%;
+    height: 1px;
+    background-color: gainsboro;
+  }
+  .wrap--menu .wrap--iconAndMenu .menu .menus::before {
+    left: 0;
+  }
+  .wrap--menu .wrap--iconAndMenu .menu .menus::after {
+    right: 0;
+  }
+}
+
+/*# sourceMappingURL=MenuComponent.razor.css.map */

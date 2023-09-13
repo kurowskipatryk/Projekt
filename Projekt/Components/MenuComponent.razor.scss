@@ -1,0 +1,136 @@
+﻿
+.wrap--menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    .logo {
+        padding: 20px 0;
+    }
+
+    .wrap--iconAndMenu {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+
+        .menu {
+            .menu-list {
+                position: absolute;
+                transform: translate3d(-800px, 0, 0);
+                left: 0;
+                transition: transform .8s;
+                flex-direction: column;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                background: black;
+                text-align: center;
+
+                li {
+                    margin: 0 1rem;
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    margin: 0;
+                    padding: 0.5em 0;
+                    width: 100%;
+                    color: white;
+                    background-color: #222;
+                    text-transform: uppercase;
+                    font: normal normal normal 16px/19px Montserrat;
+                    letter-spacing: 3.04px;
+                    color: white;
+                }
+
+                li:last-child {
+                    color: #FF0102;
+                }
+            }
+
+            .menu-list.active {
+                transform: translate3d(0, 0, 0);
+            }
+
+            img {
+                width: 23px;
+                height: 20px;
+            }
+        }
+
+        .git {
+            ::deep a {
+                color: black;
+            }
+        }
+
+        .linked {
+            ::deep a {
+                color: #0068FF;
+            }
+        }
+
+
+        @media (min-width:576px) {
+            grid-template-rows: 10fr 15fr;
+            grid-template-columns: 1fr 1fr 40fr;
+
+            .git {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .linked {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .menu {
+                grid-column: 1 / span 3;
+                grid-row: 2;
+
+                img {
+                    display: none;
+                }
+
+                .menu-list {
+                    display: flex;
+                    flex-direction: row;
+                    width: 60%;
+                    transform: translate3d(40%, 0, 0);
+                    background-color: white;
+
+
+                    li {
+                        background-color: transparent;
+                        color: black;
+                    }
+                }
+
+                .menus::before,
+                .menus::after {
+                    position: absolute;
+                    bottom: 10px;
+                    content: "";
+                    width: 5%;
+                    height: 1px;
+                    background-color: gainsboro;
+                }
+
+                .menus::before {
+                    left: 0;
+                }
+
+                .menus::after {
+                    right: 0;
+                }
+            }
+        }
+    }
+}

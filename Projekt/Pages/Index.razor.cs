@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using WMBlazorSlickCarousel.WMBSC;
 
 namespace Projekt.Pages
 {
     public partial class Index
     {
-        public WMBSCInitialSettings configurations;
-
 
         protected override async Task OnInitializedAsync()
         {
@@ -17,8 +16,12 @@ namespace Projekt.Pages
         {
             if (firstRender)
             {
-                //await JSRuntime.InvokeVoidAsync("Slice");
+                await JSRuntime.InvokeVoidAsync("Slice");
             }
+
         }
+
+
+  
     }
 }

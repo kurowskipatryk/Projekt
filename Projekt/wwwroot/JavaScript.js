@@ -27,27 +27,47 @@ function SetLanguage(culture) {
 
 
 function Slice() {
-    $('.slider').slick({
-        slidesToShow: 8,
-        slidesToScroll: 1,
-        infinite: true,
-        arrows: true,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        prevArrow: $('.prev-arrow'),
-        nextArrow: $('.next-arrow'),
 
-        //responsive: [
-        //    {
-        //        breakpoint: 576,
-        //        settings: {
-        //            slidesToShow: 1,
-        //            centerMode: true,
-        //        }
-        //    }
-        //]
-    });
+    let items = document.querySelectorAll('.carousel .carousel-item')
+
+    items.forEach((el) => {
+        // number of slides per carousel-item
+        const minPerSlide = 9
+        let next = el.nextElementSibling
+        for (var i = 1; i < minPerSlide; i++) {
+            if (!next) {
+                // wrap carousel by using first child
+                next = items[0]
+            }
+            let cloneChild = next.cloneNode(true)
+            el.appendChild(cloneChild.children[0])
+            next = next.nextElementSibling
+        }
+    })
+
+    //$('.slider').slick({
+    //    slidesToShow: 8,
+    //    slidesToScroll: 1,
+    //    infinite: true,
+    //    arrows: true,
+    //    autoplay: true,
+    //    autoplaySpeed: 5000,
+    //    prevArrow: $('.prev-arrow'),
+    //    nextArrow: $('.next-arrow'),
+
+    //    //responsive: [
+    //    //    {
+    //    //        breakpoint: 576,
+    //    //        settings: {
+    //    //            slidesToShow: 1,
+    //    //            centerMode: true,
+    //    //        }
+    //    //    }
+    //    //]
+    //});
 }
+
+
 //$(document).ready(function () {
 //    var x = $('.slider');
 //    $('.slider').slick({
