@@ -35,14 +35,14 @@ namespace Projekt.Pages
         IReadOnlyList<IBrowserFile> files = new List<IBrowserFile>();
         private long maxFileSize = 3 * 1024 * 1024; //max 3Mb 
 
-        string pathFolder = "wwwroot/Photos/";
+        string pathFolder = "Photos/";
         List<FileUploadProgress> uploadedFiles = new();
         int numberOfEmptyImages = 6;
         public List<FileBase> FileList { get; set; } = new List<FileBase>();
 
         string watermarkText = "WATERMARK";
         int watermarkOption = 1;
-        string pathEmpty = "wwwroot/Img/empty/empty.jpg";
+        string pathEmpty = "Img/empty/empty.jpg";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -138,7 +138,7 @@ namespace Projekt.Pages
         string base64StringDrag;
         private async Task UploadFiles2(IBrowserFile file)
         {
-            pathAdded = Path.Combine($"wwwroot/PhotosAdd/", file.Name);
+            pathAdded = Path.Combine($"PhotosAdd/", file.Name);
             selectedFile = true;
             await using FileStream fs = new FileStream(pathAdded, FileMode.Create);
             await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
@@ -306,7 +306,7 @@ namespace Projekt.Pages
                 foreach (var file in files)
                 {
                     var fileName = $"{Guid.NewGuid()}{file.Name}";
-                    var path = Path.Combine($"wwwroot/Photos/", fileName);
+                    var path = Path.Combine($"Photos/", fileName);
 
                     var image = new FileBase
                     {
