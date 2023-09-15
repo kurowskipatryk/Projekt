@@ -61,3 +61,15 @@
         display: block;
     }
 }
+
+
+::deep .mud-icon-button-label, ::deep .mud-list-item-text {
+    color: white !important;
+}
+
+::deep .mud-list-item:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+ 
+

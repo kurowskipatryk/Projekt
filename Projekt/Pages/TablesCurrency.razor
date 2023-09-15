@@ -1,0 +1,35 @@
+﻿@page "/TablesCurrency"
+@layout MainLayoutSecond
+@using Models
+
+<Projekt.Components.SelectTable OnSelect="Change"></Projekt.Components.SelectTable>
+
+@if (load)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <div class="col-12 col-xl-9 col-xxl-8">
+
+        <MudDataGrid T="Rate" Items="@NBPTable.Rates" Dense="true" Hover="true" Striped="true" Filterable="true" QuickFilter="@_quickFilter" ColumnResizeMode="ResizeMode.Column">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Currencies @NBPTable.EffectiveDate</MudText>
+                <MudSpacer />
+                <MudTextField @bind-Value="searchString" Clearable="true" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                          AdornmentIcon="@Icons.Material.Filled.Search" IconSize="MudBlazor.Size.Medium" Class="mt-0"></MudTextField>
+            </ToolBarContent>
+
+            <Columns>
+                <PropertyColumn Property="x => x.Currency" />
+                <PropertyColumn Property="x => x.Code" />
+                <PropertyColumn Property="x => x.Bid" />
+                <PropertyColumn Property="x => x.Mid" />
+                <PropertyColumn Property="x => x.Ask" />
+            </Columns>
+            <PagerContent>
+                <MudDataGridPager T="Rate" />
+            </PagerContent>
+        </MudDataGrid>
+    </div>
+}

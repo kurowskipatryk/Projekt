@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Configuration;
 using MudBlazor.Services;
+using NBPApi;
 using Projekt.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +14,9 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddControllers();
 builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
-
+builder.Services.AddScoped<INBPClient, NBPClient>();
 //builder.Services.AddWMBSC();
+builder.Services.AddBlazorBootstrap();
 
 builder.Services.AddMudServices();
 var app = builder.Build();

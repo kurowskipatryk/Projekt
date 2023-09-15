@@ -1,0 +1,21 @@
+﻿.select-currency {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+::deep .chart{
+    width: 90vw !important;
+   
+}
+@media (min-width: 996px) {
+    .select-currency {
+     
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    ::deep .chart {
+        width: 50vw !important;
+    }
+}
+

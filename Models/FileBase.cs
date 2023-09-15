@@ -1,4 +1,4 @@
-﻿namespace Projekt.Models
+﻿namespace Models
 {
     public class FileBase
     {

@@ -10,31 +10,67 @@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
 
-        <div class="nav-item px-3">
-            <MudNavLink Href="/Home" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+        @* <div class="nav-item px-3">
+        <MudNavLink Href="/" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
         </div>
 
         <div class="nav-item px-3">
-            <MudNavLink Href="/Watermark" Icon="@Icons.Material.Filled.BrandingWatermark" >Watermark</MudNavLink>
+        <MudNavLink Href="/Watermark" Icon="@Icons.Material.Filled.BrandingWatermark">Watermark</MudNavLink>
         </div>
+        *@
 
-       
-        
-    @*    <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+        @*<div class="nav-item px-3">*@
+        @*     <MudNavGroup Icon="@Icons.Material.Filled.PriceChange" Title="Currency" Expanded="true">
+        <MudNavLink Href="/TablesCurrency">Currency table</MudNavLink>
+        <MudNavLink Href="/CurrencyChart">Currency chart</MudNavLink>
+        </MudNavGroup>*@
+
+     @*   <MudList Clickable="true" @bind-SelectedItem="selectedItem">
+            <MudListItem Href="/" Icon="@Icons.Material.Filled.Home">Home</MudListItem>
+            <MudListItem Href="/Watermark" Icon="@Icons.Material.Filled.BrandingWatermark">Watermark</MudListItem>
+            <MudListItem Icon="@Icons.Material.Filled.PriceChange" Text="Currency" InitiallyExpanded="true">
+                <NestedList>
+                    <MudListItem Href="/TablesCurrency">Table</MudListItem>
+                    <MudListItem Href="/CurrencyChart">Chart</MudListItem>
+                </NestedList>
+            </MudListItem>
+        </MudList>*@
+        @*</div>*@
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                <MudIconButton Icon="@Icons.Material.Filled.Home" aria-label="delete"></MudIconButton>Home
+                @*<span class="oi oi-home" aria-hidden="true"></span> Home*@
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="Watermark">
-                <span class="oi oi-plus" aria-hidden="true"></span> Watermark
+                <MudIconButton Icon="@Icons.Material.Filled.BrandingWatermark" aria-label="delete"></MudIconButton>Watermak
+
+                @*<span class="oi oi-bar-chart" aria-hidden="true"></span> Watermark*@
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" href="TablesCurrency">
+                <MudIconButton Icon="@Icons.Material.Filled.CurrencyExchange" aria-label="delete"></MudIconButton>Currency
+                @*<span class="oi oi-euro" aria-hidden="true"></span> Currency*@
             </NavLink>
-        </div>*@
+
+            <ul class="nav flex-column">
+                <li class="px-3 nav-item">
+                    <NavLink class="nav-link" href="TablesCurrency">
+                        <MudIconButton Icon="@Icons.Material.Filled.TableRows" aria-label="delete"></MudIconButton>Table
+                        @*<span class="oi oi-dollar" aria-hidden="true"></span>Table*@
+                    </NavLink>
+                </li>
+                <li class="px-3 nav-item">
+                    <NavLink class="nav-link" href="CurrencyChart">
+                        <MudIconButton Icon="@Icons.Material.Filled.StackedLineChart" aria-label="delete"></MudIconButton>Chart
+                        @*<span class="oi oi-bar-chart" aria-hidden="true"></span>Chart*@
+                    </NavLink>
+                </li>
+            </ul>
+        </div>
     </nav>
 </div>
 
@@ -47,4 +83,6 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+    MudListItem selectedItem;
 }

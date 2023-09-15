@@ -4,7 +4,7 @@ on:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: Projekt20230915112158
+  AZURE_WEBAPP_NAME: Protfolio
   AZURE_WEBAPP_PACKAGE_PATH: Projekt\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x

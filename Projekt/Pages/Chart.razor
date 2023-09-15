@@ -1,0 +1,39 @@
+﻿@page "/CurrencyChart"
+@layout MainLayoutSecond
+@using Models
+
+<Projekt.Components.SelectTable OnSelect="Change"></Projekt.Components.SelectTable>
+<div class="col-12">
+    @if (NBPTable.Table != null)
+    {
+        <div class="select-currency">
+            @for (int i = 0; i < numberOfCurr; i++)
+            {
+                <div class="col-12 col-xxl-2 mr-xl-3">
+                    <MudSelect T="string" @ref="_mudSelect" ValueChanged="(x)=>ChangeCur(x, i)" Label="Code" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
+                        @foreach (var item in NBPTable.Rates)
+                        {
+                            <MudSelectItem Value="item.Code"></MudSelectItem>
+                        }
+                    </MudSelect>
+                </div>
+            }
+            @if (numberOfCurr > 1 && numberOfCurr <= 5)
+            {
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" OnClick="RemoveCur"></MudIconButton>
+            }
+            @if (numberOfCurr <= 4)
+            {
+                <MudFab Color="Color.Primary" OnClick="AddCur" StartIcon="@Icons.Material.Filled.Add" />
+            }
+        </div>
+    }
+    <div class="col-12 col-xxl-3">
+
+        <MudDateRangePicker Label="Select date" Editable="true" AutoClose="true" TextChanged="SelectedDate" @bind-DateRange="_dateRange" @ref="_picker" />
+    </div>
+</div>
+
+<div class="d-flex m-auto">
+    <LineChart @ref="lineChart" Class="mb-4 chart" />
+</div>
