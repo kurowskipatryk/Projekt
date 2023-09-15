@@ -48,17 +48,27 @@ namespace Projekt.Pages
         {
             if (firstRender)
             {
-                using (Image image = Image.FromFile(pathEmpty))
-                {
-                    using (MemoryStream m = new MemoryStream())
-                    {
-                        image.Save(m, image.RawFormat);
-                        byte[] imageBytes = m.ToArray();
 
-                        // Convert byte[] to Base64 String
-                        base64String = Convert.ToBase64String(imageBytes);
-                    }
+                using (MemoryStream m = new MemoryStream())
+                {
+                    byte[] imageBytes = System.IO.File.ReadAllBytes(pathEmpty);
+                    //image.Save(m, image.RawFormat);
+                    //byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    base64String = Convert.ToBase64String(imageBytes);
                 }
+                //using (Image image = Image.FromFile(pathEmpty))
+                //{
+                //    using (MemoryStream m = new MemoryStream())
+                //    {
+                //        image.Save(m, image.RawFormat);
+                //        byte[] imageBytes = m.ToArray();
+
+                //        // Convert byte[] to Base64 String
+                //        base64String = Convert.ToBase64String(imageBytes);
+                //    }
+                //}
 
                 if (watermarkOption == 2)
                 {
@@ -137,16 +147,25 @@ namespace Projekt.Pages
             await fs.ReadAsync(bytes);
             fs.Close();
 
-            using (Image image = Image.FromFile(pathAdded))
+            using (MemoryStream m = new MemoryStream())
             {
-                using (MemoryStream m = new MemoryStream())
-                {
-                    image.Save(m, image.RawFormat);
-                    byte[] imageBytes = m.ToArray();
-
-                    base64StringDrag = Convert.ToBase64String(imageBytes);
-                }
+                byte[] imageBytes = System.IO.File.ReadAllBytes(pathAdded);
+            
+                // Convert byte[] to Base64 String
+                base64String = Convert.ToBase64String(imageBytes);
             }
+
+
+            //using (Image image = Image.FromFile(pathAdded))
+            //{
+            //    using (MemoryStream m = new MemoryStream())
+            //    {
+            //        image.Save(m, image.RawFormat);
+            //        byte[] imageBytes = m.ToArray();
+
+            //        base64StringDrag = Convert.ToBase64String(imageBytes);
+            //    }
+            //}
             await ChangeSize(watermakrSize);
         }
 
