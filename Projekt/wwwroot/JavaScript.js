@@ -17,6 +17,11 @@ function SetLanguage(culture) {
     }
 }
 
+function openMenu() {
+    const menuEl = document.getElementById("menu-list");
+    menuEl.classList.toggle('active');
+}
+
 //$(document).ready(function () {
 //    $('.slider').slick({
 //        infinite: true,
@@ -26,79 +31,152 @@ function SetLanguage(culture) {
 //});
 
 
-function Slice() {
+//function Slice() {
 
-    let items = document.querySelectorAll('.carousel .carousel-item')
+//    let items = document.querySelectorAll('.carousel .carousel-item')
 
-    items.forEach((el) => {
-        // number of slides per carousel-item
-        const minPerSlide = 9
-        let next = el.nextElementSibling
-        for (var i = 1; i < minPerSlide; i++) {
-            if (!next) {
-                // wrap carousel by using first child
-                next = items[0]
-            }
-            let cloneChild = next.cloneNode(true)
-            el.appendChild(cloneChild.children[0])
-            next = next.nextElementSibling
-        }
-    })
+//    items.forEach((el) => {
+//        // number of slides per carousel-item
+//        const minPerSlide = 9
+//        let next = el.nextElementSibling
+//        for (var i = 1; i < minPerSlide; i++) {
+//            if (!next) {
+//                // wrap carousel by using first child
+//                next = items[0]
+//            }
+//            let cloneChild = next.cloneNode(true)
+//            el.appendChild(cloneChild.children[0])
+//            next = next.nextElementSibling
+//        }
+//    })
 
-    //$('.slider').slick({
-    //    slidesToShow: 8,
-    //    slidesToScroll: 1,
-    //    infinite: true,
-    //    arrows: true,
-    //    autoplay: true,
-    //    autoplaySpeed: 5000,
-    //    prevArrow: $('.prev-arrow'),
-    //    nextArrow: $('.next-arrow'),
+//    //$('.slider').slick({
+//    //    slidesToShow: 8,
+//    //    slidesToScroll: 1,
+//    //    infinite: true,
+//    //    arrows: true,
+//    //    autoplay: true,
+//    //    autoplaySpeed: 5000,
+//    //    prevArrow: $('.prev-arrow'),
+//    //    nextArrow: $('.next-arrow'),
 
-    //    //responsive: [
-    //    //    {
-    //    //        breakpoint: 576,
-    //    //        settings: {
-    //    //            slidesToShow: 1,
-    //    //            centerMode: true,
-    //    //        }
-    //    //    }
-    //    //]
-    //});
+//    //    //responsive: [
+//    //    //    {
+//    //    //        breakpoint: 576,
+//    //    //        settings: {
+//    //    //            slidesToShow: 1,
+//    //    //            centerMode: true,
+//    //    //        }
+//    //    //    }
+//    //    //]
+//    //});
+//}
+
+
+
+function Scroll() {
+
+    //window.addEventListener('scroll', reveal2);
+        console.log('scroll');
+}
+
+function reveal2() {
+    var cont = document.getElementById('containerScroll');
+
+    cont.onscroll = function () { reveal() };
+    //window.onscroll = function () { Scroll() };
+    
+   
 }
 
 
-//$(document).ready(function () {
-//    var x = $('.slider');
-//    $('.slider').slick({
-//        slidesToShow: 5,
-//        slidesToScroll: 1,
-//        infinite: true,
-//        arrows: true,
-//        autoplay: true,
-//        autoplaySpeed: 5000,
-//        prevArrow: $('.prev-arrow'),
-//        nextArrow: $('.next-arrow'),
 
-//        responsive: [
-//            {
-//                breakpoint: 576,
-//                settings: {
-//                    slidesToShow: 1,
-//                    centerMode: true,
-//                }
-//            }
-//        ]
-//    });
-//});
+function reveal() {
+    var reveals = document.querySelectorAll('.reveal');
+
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var revealTop = reveals[i].getBoundingClientRect().top;
+        var revealPoint = 150;
+
+        if (revealTop < windowHeight - revealPoint) {
+            reveals[i].classList.add('active');
+        }
+        else {
+            reveals[i].classList.remove('active');
+        }
+    }
+}
+
+
+function Slice2() {
+    $(document).ready(function () {
+        var carousel = $('.owl-carousel');
+        var $owl = carousel.owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 4,
+                    nav: true
+                },
+                1000: {
+                    items: 6,
+                    nav: true
+                },
+                // 1240: {
+                //     items: 4,
+                //     nav: true,
+                //     loop: true
+                // },
+                1400: {
+                    items: 9,
+                    nav: true
+                }
+            },
+            dotsEach: true,
+            autoplay: true,
+            checkVisible: true,
+            autoplayTimeout: 5000,
+            autoplayHoverPause: true
+        });
+
+    });
+}
 
 
 
 //dragElement(document.getElementById("square"));
 
+
+
 function dragElement(dotNetObjRef) {
     var waterMark = document.getElementById("mydivheader");
     const square = document.getElementById("square");
+
+    waterMark.addEventListener('touchmove', function (e) {
+        // grab the location of touch
+        var touchLocation = e.targetTouches[0];
+
+        console.log(touchLocation);
+
+        // assign box new coordinates based on the touch.
+        waterMark.style.left = touchLocation.pageX + 'px';
+        waterMark.style.top = touchLocation.pageY + 'px';
+
+
+    })
+    //waterMark.addEventListener('touchend', function (e) {
+    //    // current box position.
+    //    var x = parseInt(waterMark.style.left);
+    //    var y = parseInt(waterMark.style.top);
+    //})
 
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(waterMark.id + "header")) {
@@ -146,7 +224,7 @@ function dragElement(dotNetObjRef) {
         if (waterMark.offsetTop <= -1) {
             waterMark.style.top = 0 + "px";
         }
-        else if (waterMark.offsetTop >= square.offsetHeight - waterMark.offsetHeight  + 1) {
+        else if (waterMark.offsetTop >= square.offsetHeight - waterMark.offsetHeight + 1) {
             waterMark.style.top = square.offsetHeight - waterMark.offsetHeight + "px";
         }
         else {
@@ -162,8 +240,8 @@ function dragElement(dotNetObjRef) {
         document.onmouseup = null;
         document.onmousemove = null;
 
-        let left = waterMark.offsetLeft + waterMark.offsetWidth /2;
-        let top = waterMark.offsetTop + waterMark.offsetHeight /2 ;
+        let left = waterMark.offsetLeft + waterMark.offsetWidth / 2;
+        let top = waterMark.offsetTop + waterMark.offsetHeight / 2;
 
 
         const squareRect = document.getElementById("square").getBoundingClientRect();

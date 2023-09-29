@@ -5,9 +5,9 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Projekt", "Projekt\Projekt.csproj", "{270B1984-6BBB-42F8-933A-19E5EBC4548D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{26923770-557D-4188-A180-57A804F81F7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{26923770-557D-4188-A180-57A804F81F7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBPApi", "NBPApi\NBPApi.csproj", "{2493AE73-C5B1-4B17-97FA-273679C48466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NBPApi", "NBPApi\NBPApi.csproj", "{2493AE73-C5B1-4B17-97FA-273679C48466}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

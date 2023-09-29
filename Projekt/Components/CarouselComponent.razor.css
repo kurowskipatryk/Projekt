@@ -1,0 +1,11 @@
+.img-fluid {
+  width: 130px !important;
+  /*padding: 20px;*/
+}
+
+.owl-stage {
+  display: flex;
+  align-items: center;
+}
+
+/*# sourceMappingURL=CarouselComponent.razor.css.map */

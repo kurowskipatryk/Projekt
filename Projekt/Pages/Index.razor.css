@@ -1,59 +1,30 @@
-/*.wrap-slick {
-    display: flex;
-    position: relative;
-
-    .slider {
-
-        img {
-            width: 150px;
-            height: 90px;
-        }
-    }
-
-    .arrow {
-        z-index: 101;
-        top: calc(50% - 18px);
-    }
-
-    .prev-arrow {
-        left: 0;
-        transform: rotate(180deg)
-    }
-
-    .next-arrow {
-        right: 0;
-    }
-
-    .arrow:hover {
-        background-color: gray;
-    }
-
-    .slick-slide {
-        display: flex;
-        justify-content: center;
-    }
-}*/
-.wrap--section1 .section1 {
-  height: 250px;
-  margin-top: 40px;
-  /*    display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;*/
-  position: relative;
-}
-.wrap--section1 .section1 .slide {
-  position: absolute;
-  top: 0;
-  width: 100%;
+section {
+  min-height: 100vh;
   display: flex;
-  animation-name: slideup;
-  animation-delay: 0.5s;
-  animation-duration: 0.8s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-out;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+}
+section .education-image,
+section .expirience-image {
+  display: none;
+}
+@media (min-width: 768px) {
+  section .education-image,
+section .expirience-image {
+    display: flex;
+  }
+}
+section .reveal {
+  position: relative;
+  display: flex;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: all 2s ease;
+  align-items: center;
+}
+section .reveal.active {
+  transform: translateY(0px);
+  opacity: 1;
 }
 
 .wrap--section-skills {

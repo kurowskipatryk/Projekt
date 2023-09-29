@@ -5,19 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace NBPApi
 {
     public class NBPClient : INBPClient
     {
         private readonly HttpClient httpClient = new HttpClient();
-
+        string Url;
+        public NBPClient(IConfiguration configuration)
+        {
+            Url = configuration["UrlApi"];
+        }
 
         public async Task<NBPTable> GetCurrency(string type)
         {
             try
             {
-                var response = await httpClient.GetAsync($"http://api.nbp.pl/api/exchangerates/tables/{type}");
+                var response = await httpClient.GetAsync($"{Url}/api/exchangerates/tables/{type}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -41,7 +46,7 @@ namespace NBPApi
         {
             try
             {
-                var response = await httpClient.GetAsync($"http://api.nbp.pl/api/exchangerates/rates/{tableType}/{code}/{startDate.ToString("yyyy-MM-dd")}/{endDate.ToString("yyyy-MM-dd")}");
+                var response = await httpClient.GetAsync($"{Url}/api/exchangerates/rates/{tableType}/{code}/{startDate.ToString("yyyy-MM-dd")}/{endDate.ToString("yyyy-MM-dd")}");
 
                 if (!response.IsSuccessStatusCode)
                 {

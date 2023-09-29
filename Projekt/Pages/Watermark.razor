@@ -114,7 +114,7 @@ else
             @foreach (var item in FileList)
             {
                 <li class="image-loaded">
-                    <img class="image" src="./Photos/@item.Name" />
+                    <img class="image" src="/Photos/@item.Name" />
                     <MudIconButton Class="mud-delete-image-button" Icon="@Icons.Material.Filled.Delete" OnClick="()=>DeleteImage(item)" Variant="Variant.Filled" Color="Color.Error" Size="MudBlazor.Size.Small" />
                 </li>
             }

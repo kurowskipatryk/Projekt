@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Diagnostics.Metrics;
 using WMBlazorSlickCarousel.WMBSC;
 
 namespace Projekt.Pages
@@ -16,12 +17,17 @@ namespace Projekt.Pages
         {
             if (firstRender)
             {
-                await JSRuntime.InvokeVoidAsync("Slice");
+                //await JSRuntime.InvokeVoidAsync("Slice");
+                await JSRuntime.InvokeVoidAsync("reveal2");
             }
 
         }
 
+        private async Task OnScroll()
+        {
+        }
 
-  
+
+
     }
 }
